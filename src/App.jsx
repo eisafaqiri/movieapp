@@ -1,25 +1,30 @@
-import { CssBaseline, ThemeProvider, Typography } from "@mui/material";
+import { Box, CssBaseline, ThemeProvider } from "@mui/material";
 // import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { colorModeContext, useMode } from "./theme";
-import Navbar from "./components/layout/Navbar";
-import { moreDetails } from "./features/movie/movieSlice";
+// import { useDispatch, useSelector } from "react-redux";
+import { ColorModeContext, useMode } from "./theme";
+// import { moreDetails } from "./features/movie/movieSlice";
+import Sidebar from "./components/layout/Sidebar";
+import Topbar from "./components/layout/Topbar";
 
 function App() {
-  const { movies } = useSelector((state) => state.movie);
-  const dispatch = useDispatch();
-  dispatch(moreDetails("tt3896198"));
-  console.log(movies);
+  // const { movies } = useSelector((state) => state.movie);
+  // const dispatch = useDispatch();
+  // dispatch(moreDetails("tt3896198"));
+  // console.log(movies);
 
   const [theme, colorMode] = useMode();
   return (
-    <colorModeContext.Provider value={colorMode}>
+    <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Navbar />
-        <Typography variant="h1">Movie API Application</Typography>
+        <Box>
+          <Sidebar />
+          <main className="content">
+            <Topbar />
+          </main>
+        </Box>
       </ThemeProvider>
-    </colorModeContext.Provider>
+    </ColorModeContext.Provider>
   );
 }
 
