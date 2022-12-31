@@ -186,6 +186,15 @@ export const themeSettings = (mode) => {
         fontSize: 14,
       },
     },
+    components: {
+      MuiDrawer: {
+        styleOverrides: {
+          paper: {
+            backgroundColor: colors.primary[400],
+          },
+        },
+      },
+    },
   };
 };
 
