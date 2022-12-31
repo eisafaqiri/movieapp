@@ -122,7 +122,7 @@ export const themeSettings = (mode) => {
   const colors = tokens(mode);
 
   return {
-    pallete: {
+    palette: {
       mode,
       ...(mode === "dark"
         ? {
@@ -189,7 +189,7 @@ export const themeSettings = (mode) => {
   };
 };
 
-export const colorModeContext = createContext({
+export const ColorModeContext = createContext({
   toggleColorMode: () => {},
 });
 
@@ -198,7 +198,7 @@ export const useMode = () => {
 
   const colorMode = useMemo(
     () => ({
-      toggleColorMode: () => setMode((prev) => (prev === "light" ? "darK" : "light ")),
+      toggleColorMode: () => setMode((prev) => (prev === "light" ? "dark" : "light")),
     }),
     [],
   );
