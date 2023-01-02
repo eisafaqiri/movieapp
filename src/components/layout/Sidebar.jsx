@@ -14,6 +14,7 @@ import ListItemText from "@mui/material/ListItemText";
 import {
   Home, Info, Movie,
 } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -85,35 +86,40 @@ export default function Sidebar() {
             {
               value: "Home",
               icon: <Home />,
+              link: "/",
             },
             {
               value: "250 Top",
               icon: <Movie />,
+              link: "/topmovies",
             },
             {
               value: "About",
               icon: <Info />,
+              link: "/about",
             },
           ].map((item) => (
             <ListItem key={item.value} disablePadding sx={{ display: "block" }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
+              <Link to={item.link} style={{ textDecoration: "none", color: "white" }}>
+                <ListItemButton
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
                   }}
                 >
-                  {item.icon}
-                </ListItemIcon>
-                <ListItemText primary={item.value} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : "auto",
+                      justifyContent: "center",
+                    }}
+                  >
+                    {item.icon}
+                  </ListItemIcon>
+                  <ListItemText primary={item.value} sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+              </Link>
             </ListItem>
           ))}
         </List>
