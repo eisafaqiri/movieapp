@@ -21,6 +21,7 @@ function Topbar() {
         p: 2,
       }}
     >
+      <Box />
       <Box
         sx={{
           display: "flex",
@@ -28,7 +29,14 @@ function Topbar() {
           borderRadius: "3px",
         }}
       >
-        <InputBase sx={{ ml: 2, flex: 1 }} placeholder="Search" />
+        <InputBase
+          sx={{
+            ml: 2,
+            flex: 1,
+            width: { sm: 240, md: 500, lg: 800 },
+          }}
+          placeholder="Search"
+        />
         <IconButton>
           <SearchOutlined />
         </IconButton>
