@@ -35,7 +35,7 @@ function Topbar() {
             flex: 1,
             width: { sm: 240, md: 500, lg: 800 },
           }}
-          placeholder="Search"
+          placeholder="Search..."
         />
         <IconButton>
           <SearchOutlined />
