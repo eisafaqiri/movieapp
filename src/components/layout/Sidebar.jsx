@@ -15,6 +15,8 @@ import {
   Home, Info, Movie,
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import { useTheme } from "@emotion/react";
+import { tokens } from "../../theme";
 
 const drawerWidth = 240;
 
@@ -71,6 +73,8 @@ export default function Sidebar() {
   const handleDrawerToggle = () => {
     setOpen((prev) => (prev !== true));
   };
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -100,7 +104,7 @@ export default function Sidebar() {
             },
           ].map((item) => (
             <ListItem key={item.value} disablePadding sx={{ display: "block" }}>
-              <Link to={item.link} style={{ textDecoration: "none", color: "white" }}>
+              <Link to={item.link} style={{ textDecoration: "none", color: colors.primary[100] }}>
                 <ListItemButton
                   sx={{
                     minHeight: 48,
