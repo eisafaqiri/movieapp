@@ -18,7 +18,7 @@ import { Link } from "react-router-dom";
 import { useTheme } from "@emotion/react";
 import { tokens } from "../../theme";
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,

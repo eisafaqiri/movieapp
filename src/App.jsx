@@ -21,7 +21,7 @@ function App() {
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Box sx={{ display: "flex" }}>
+        <Box sx={{ display: "flex", overflowY: "hidden" }}>
           <Sidebar />
           <main className="content">
             <Topbar />
