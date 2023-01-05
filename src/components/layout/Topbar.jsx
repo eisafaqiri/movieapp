@@ -8,38 +8,21 @@ import {
   Box, IconButton, InputBase,
 } from "@mui/material";
 import { useContext, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ColorModeContext, tokens } from "../../theme";
-import { searchMovies } from "../../features/movie/movieSlice";
-// import MovieItems from "../MovieItems";
 
 function Topbar() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
 
-  const { movies } = useSelector((state) => state.movie);
-  const dispatch = useDispatch();
-  // dispatch(searchMovies(inputValue));
+  const navigate = useNavigate();
   const [inputValue, setInputValue] = useState("");
-  const { id } = useParams();
-  console.log(id);
-
-  const handelInput = (e) => setInputValue(e.target.value);
 
   const handleForm = (e) => {
     e.preventDefault();
-    const formData = dispatch(searchMovies(inputValue));
-    return (
-      <Link to={{
-        pathname: `/movieItems/${id}`,
-        search: `formData=${encodeURIComponent(JSON.stringify(formData))}`,
-      }}
-      />
-    );
+    navigate(`/search?s=${inputValue}`);
   };
-  console.log(movies);
 
   return (
     <Box
@@ -53,15 +36,14 @@ function Topbar() {
       <Box
         sx={{
           display: "flex",
-          backgroundColor: colors.primary[400],
+          backgroundColor: colors.primary[500],
           borderRadius: "3px",
         }}
       >
         <form onSubmit={handleForm} autoComplete="off">
           <InputBase
-            id="input"
-            name="input"
-            onChange={handelInput}
+            value={inputValue}
+            onChange={(e) => (setInputValue(e.target.value))}
             sx={{
               ml: 2,
               mt: 0.6,
@@ -71,7 +53,6 @@ function Topbar() {
             placeholder="Search Movies..."
           />
         </form>
-        {/* <MovieItems inputValue={inputValue} /> */}
         <IconButton onClick={handleForm}>
           <SearchOutlined />
         </IconButton>

@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import data from "../../topMovies.json";
 
 const {
   VITE_API_URL,
@@ -7,6 +8,7 @@ const {
 
 const initialState = {
   movies: [],
+  topMovies: data,
 };
 
 export const searchMovies = createAsyncThunk("movie/searchMovie", async (searchString) => {
@@ -28,7 +30,9 @@ export const movieSlice = createSlice({
   name: "movie",
   initialState,
   reducers: {
-
+    getData: (state, action) => {
+      state.topMovies = action.payload;
+    },
   },
   extraReducers: {
     [searchMovies.fulfilled]: (state, action) => {
@@ -37,7 +41,6 @@ export const movieSlice = createSlice({
   },
 });
 
-// eslint-disable-next-line no-empty-pattern
-export const { } = movieSlice.actions;
+export const { getData } = movieSlice.actions;
 
 export default movieSlice.reducer;
