@@ -76,7 +76,7 @@ export const tokens = (mode) => ({
         200: "#080912",
         300: "#0c0d1b",
         400: "#f2f0f0",
-        500: "#14162d",
+        500: "#f2f0f0",
         600: "#434557",
         700: "#727381",
         800: "#a1a2ab",
@@ -138,7 +138,7 @@ export const themeSettings = (mode) => {
             light: colors.grey[100],
           },
           background: {
-            default: colors.primary[500],
+            default: colors.primary[900],
           },
         } : {
           primary: {
@@ -153,7 +153,7 @@ export const themeSettings = (mode) => {
             light: colors.grey[100],
           },
           background: {
-            default: "#fcfcfc",
+            default: "#fff",
           },
         }
       ),
@@ -164,6 +164,9 @@ export const themeSettings = (mode) => {
       h1: {
         fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
         fontSize: 40,
+        "@media (max-width:600px)": {
+          fontSize: 25,
+        },
       },
       h2: {
         fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
@@ -190,7 +193,7 @@ export const themeSettings = (mode) => {
       MuiDrawer: {
         styleOverrides: {
           paper: {
-            backgroundColor: colors.primary[400],
+            backgroundColor: colors.primary[500],
           },
         },
       },
