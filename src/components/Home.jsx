@@ -2,13 +2,20 @@ import { useTheme } from "@emotion/react";
 import {
   Box, Card, CardContent, CardHeader, CardMedia, Grid, Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 import { tokens } from "../theme";
-import data from "../topMovies.json";
+import { getData } from "../features/movie/movieSlice";
 
 function Home() {
-  const [jsonData] = useState(data.movies);
-  const movie = jsonData.slice(0, 10);
+  const dispatch = useDispatch();
+  const { topMovies } = useSelector((state) => state.movie);
+
+  useEffect(() => {
+    dispatch(getData(topMovies));
+  }, [dispatch, topMovies]);
+
+  const movie = topMovies.movies.slice(0, 10);
 
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -33,7 +40,7 @@ function Home() {
           <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={item.Title}>
             <Card
               sx={{
-                maxWidth: 345, height: "100%", mb: 3, backgroundColor: colors.primary[500],
+                maxWidth: 345, height: "92%", mb: 3, backgroundColor: colors.primary[500],
               }}
               key={item.Title}
             >
@@ -47,9 +54,10 @@ function Home() {
                 subheader={item.Released}
               />
               <CardMedia
+                sx={{ objectFit: "scale-down" }}
                 component="img"
                 loading="lazy"
-                height={500}
+                height={200}
                 image={item.Poster}
                 alt={item.Title}
               />
