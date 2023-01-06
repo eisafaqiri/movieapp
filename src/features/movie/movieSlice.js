@@ -9,6 +9,7 @@ const {
 const initialState = {
   movies: [],
   topMovies: data,
+  isLoading: false,
 };
 
 export const searchMovies = createAsyncThunk("movie/searchMovie", async (searchString) => {
@@ -34,10 +35,15 @@ export const movieSlice = createSlice({
       state.topMovies = action.payload;
     },
   },
-  extraReducers: {
-    [searchMovies.fulfilled]: (state, action) => {
-      state.movies = action.payload;
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(searchMovies.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(searchMovies.fulfilled, (state, action) => {
+        state.movies = action.payload;
+        state.isLoading = false;
+      });
   },
 });
 
