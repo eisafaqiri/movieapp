@@ -12,17 +12,18 @@ import { useNavigate } from "react-router-dom";
 import { ColorModeContext, tokens } from "../../theme";
 
 function Topbar() {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
-  const colorMode = useContext(ColorModeContext);
-
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState("");
 
   const handleForm = (e) => {
     e.preventDefault();
     navigate(`/search?s=${inputValue}`);
+    setInputValue("");
   };
+
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  const colorMode = useContext(ColorModeContext);
 
   return (
     <Box
