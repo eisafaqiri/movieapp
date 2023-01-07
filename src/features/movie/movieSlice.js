@@ -22,7 +22,6 @@ export const searchMovies = createAsyncThunk("movie/searchMovie", async (searchS
 export const moreDetails = createAsyncThunk("movie/moreDetails", async (movieID) => {
   const res = await fetch(`${VITE_API_URL}?i=${movieID}&apikey=${VITE_API_KEY}`);
   const result = await res.json();
-  console.log(result);
 
   return result;
 });

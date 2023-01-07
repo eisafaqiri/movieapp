@@ -1,9 +1,12 @@
+import { useTheme } from "@emotion/react";
 import { Typography } from "@mui/material";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { searchMovies } from "../features/movie/movieSlice";
 import MovieItems from "./MovieItems";
+import { tokens } from "../theme";
+import LoadingSkeleton from "./layout/LoadingSkeleton";
 
 function SearchMovie() {
   const location = useLocation();
@@ -11,26 +14,25 @@ function SearchMovie() {
 
   const { movies, isLoading } = useSelector((state) => state.movie);
   const dispatch = useDispatch();
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
 
   useEffect(() => {
     dispatch(searchMovies(inputValue));
   }, [dispatch, inputValue]);
 
-  const { Search, totalResults } = movies;
+  const { Response, Search, totalResults } = movies;
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <LoadingSkeleton />;
+  }
+
+  if (Response === "False") {
+    return <Typography variant="h2" color={colors.redAccent[500]} sx={{ display: "flex", justifyContent: "center", placeItems: "center" }}>Movie not found!</Typography>;
   }
 
   return (
-    <>
-      <Typography variant="h3" mb="1rem" ml="1rem">
-        Total Results:
-        {" "}
-        {totalResults}
-      </Typography>
-      <MovieItems search={Search} />
-    </>
+    <MovieItems search={Search} totalResults={totalResults} colors={colors} />
   );
 }
 

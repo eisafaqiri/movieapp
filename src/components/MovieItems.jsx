@@ -1,21 +1,23 @@
 /* eslint-disable react/prop-types */
-import { useTheme } from "@emotion/react";
 import {
   Box,
   Card, CardContent, CardHeader, CardMedia, Grid, Typography,
 } from "@mui/material";
 import React from "react";
-import { tokens } from "../theme";
 
-function MovieItems({ search }) {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
-
+function MovieItems({
+  search, totalResults, colors,
+}) {
   return (
     <Box sx={{
       flexGrow: 1, ml: 2, mr: 2, mt: 3,
     }}
     >
+      <Typography variant="h3" mb="1rem">
+        Total Results:
+        {" "}
+        {totalResults}
+      </Typography>
 
       <Grid
         container
@@ -35,12 +37,16 @@ function MovieItems({ search }) {
             >
               <CardHeader
                 action={(
-                  <Typography variant="h6" color={colors.greenAccent[400]} ml="1px">
+                  <Typography variant="subtitle1" color={colors.greenAccent[400]} ml="1px">
                     {movie.Year}
                   </Typography>
-      )}
-                title={movie.Title}
-                subheader={movie.Released}
+                )}
+                title={
+                  movie.Title
+                }
+                subheader={
+                  movie.Released
+                }
               />
               <CardMedia
                 sx={{ objectFit: "scale-down" }}
