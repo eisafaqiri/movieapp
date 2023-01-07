@@ -5,24 +5,30 @@ import {
   SearchOutlined,
 } from "@mui/icons-material";
 import {
-  Box, IconButton, InputBase,
+  Box, IconButton, TextField, Tooltip,
 } from "@mui/material";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ColorModeContext, tokens } from "../../theme";
+import { ColorModeContext } from "../../theme";
 
 function Topbar() {
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState("");
+  const [emptyInput, setEmptyInput] = useState(false);
+
+  const handleInput = (e) => setInputValue(e.target.value);
 
   const handleForm = (e) => {
     e.preventDefault();
-    navigate(`/search?s=${inputValue}`);
-    setInputValue("");
+    if (inputValue.trim() === "") {
+      return setEmptyInput(true);
+    }
+    navigate(`/search?s=${inputValue.trim()}`);
+    setEmptyInput(false);
+    return setInputValue("");
   };
 
   const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
 
   return (
@@ -35,27 +41,44 @@ function Topbar() {
     >
       <Box />
       <Box
+        onSubmit={handleForm}
+        component="form"
         sx={{
           display: "flex",
-          backgroundColor: colors.primary[500],
-          borderRadius: "3px",
         }}
+        noValidate
+        autoComplete="off"
       >
-        <form onSubmit={handleForm} autoComplete="off">
-          <InputBase
+        {!emptyInput ? (
+          <TextField
             value={inputValue}
-            onChange={(e) => (setInputValue(e.target.value))}
+            onChange={handleInput}
+            id="input-with-icon-textfield"
+            label="Search Movie..."
+            variant="standard"
+            color="primary"
             sx={{
-              ml: 2,
-              mt: 0.6,
-              flex: 1,
               width: { sm: 240, md: 500, lg: 800 },
             }}
-            placeholder="Search Movies..."
           />
-        </form>
-        <IconButton onClick={handleForm}>
-          <SearchOutlined />
+        ) : (
+          <TextField
+            error
+            value={inputValue}
+            onChange={handleInput}
+            id="outlined-error-helper-text"
+            label="Error"
+            helperText="Please fill the input"
+            variant="standard"
+            sx={{
+              width: { sm: 240, md: 500, lg: 800 },
+            }}
+          />
+        )}
+        <IconButton onClick={handleForm} sx={{ mt: 2 }}>
+          <Tooltip title="serach">
+            <SearchOutlined />
+          </Tooltip>
         </IconButton>
       </Box>
 
