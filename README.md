@@ -7,7 +7,7 @@ Welcome to the Movie App! This app allows you to search for and read about your 
 ## How to use
 1. Clone the repository and install dependencies:
 ```
-$ git clone https://github.com/[eisafaqiri]/Movie-App.git
+$ git clone https://github.com/eisafaqiri/Movie-App.git
 $ cd Movie-App
 $ npm install
 ```
