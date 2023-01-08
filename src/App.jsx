@@ -7,6 +7,7 @@ import TopMovies from "./components/TopMovies";
 import About from "./components/About";
 import Home from "./components/Home";
 import SearchMovie from "./components/SearchMovie";
+import MovieDetails from "./components/MovieDetails";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -20,9 +21,10 @@ function App() {
             <Topbar />
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="topmovies" element={<TopMovies />} />
+              <Route path="/topmovies" element={<TopMovies />} />
               <Route path="/about" element={<About />} />
               <Route path="/search" element={<SearchMovie />} />
+              <Route path="/moredetails/:id" element={<MovieDetails />} />
             </Routes>
           </main>
         </Box>
