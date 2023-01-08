@@ -14,6 +14,7 @@ function SearchMovie() {
 
   const { movies, isLoading } = useSelector((state) => state.movie);
   const dispatch = useDispatch();
+
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 

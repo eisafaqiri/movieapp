@@ -19,7 +19,7 @@ export const searchMovies = createAsyncThunk("movie/searchMovie", async (searchS
   return result;
 });
 
-export const moreDetails = createAsyncThunk("movie/moreDetails", async (movieID) => {
+export const movieDetails = createAsyncThunk("movie/movieDetails", async (movieID) => {
   const res = await fetch(`${VITE_API_URL}?i=${movieID}&apikey=${VITE_API_KEY}`);
   const result = await res.json();
 
@@ -42,6 +42,9 @@ export const movieSlice = createSlice({
       .addCase(searchMovies.fulfilled, (state, action) => {
         state.movies = action.payload;
         state.isLoading = false;
+      })
+      .addCase(movieDetails.fulfilled, (state, action) => {
+        state.movies = action.payload;
       });
   },
 });

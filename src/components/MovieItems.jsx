@@ -3,7 +3,8 @@ import {
   Box,
   Card, CardContent, CardHeader, CardMedia, Grid, Typography,
 } from "@mui/material";
-import React from "react";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import { Link } from "react-router-dom";
 
 function MovieItems({
   search, totalResults, colors,
@@ -56,13 +57,23 @@ function MovieItems({
                 image={movie.Poster}
                 alt={movie.Title}
               />
-              <CardContent>
-                <Typography variant="body1" color={colors.grey[200]}>
-                  Type:
-                  {" "}
-                  {movie.Type}
-                </Typography>
-              </CardContent>
+              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                <CardContent>
+                  <Typography variant="body1" color={colors.grey[200]}>
+                    Type:
+                    {" "}
+                    {movie.Type}
+                  </Typography>
+                </CardContent>
+                <CardContent>
+                  <Link to={`/moredetails/${movie.imdbID}`} style={{ display: "flex", color: colors.blueAccent[300] }}>
+                    <Typography variant="body1">
+                      Read more
+                    </Typography>
+                    <KeyboardArrowRightIcon />
+                  </Link>
+                </CardContent>
+              </Box>
             </Card>
           </Grid>
         ))}
