@@ -76,7 +76,7 @@ export const tokens = (mode) => ({
         200: "#080912",
         300: "#0c0d1b",
         400: "#f2f0f0",
-        500: "#f2f0f0",
+        500: "#fffefe",
         600: "#434557",
         700: "#727381",
         800: "#a1a2ab",
@@ -153,7 +153,7 @@ export const themeSettings = (mode) => {
             light: colors.grey[100],
           },
           background: {
-            default: colors.primary[900],
+            default: "#ededec",
           },
         }
       ),

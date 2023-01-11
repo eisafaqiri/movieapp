@@ -32,7 +32,7 @@ function MovieItems({
           <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={movie.imdbID}>
             <Card
               sx={{
-                maxWidth: 345, height: "92%", mb: 3, backgroundColor: colors.primary[500],
+                maxWidth: 345, height: "92%", mb: 2, backgroundColor: colors.primary[500],
               }}
               key={movie.Title}
             >
@@ -50,7 +50,7 @@ function MovieItems({
                 }
               />
               <CardMedia
-                sx={{ objectFit: "scale-down" }}
+                sx={{ maxWidth: "100%", objectFit: "cover" }}
                 component="img"
                 loading="lazy"
                 height={200}
