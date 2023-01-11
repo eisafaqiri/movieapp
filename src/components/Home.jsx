@@ -22,7 +22,7 @@ function Home() {
 
   return (
     <Box sx={{
-      flexGrow: 1, ml: 2, mr: 2, mt: 3,
+      flexGrow: 1, ml: 2, mr: 2,
     }}
     >
       <Typography variant="h1" mb="1rem">
@@ -32,15 +32,12 @@ function Home() {
       <Grid
         container
         spacing={{ xs: 2, md: 3, lg: 3 }}
-        columns={{
-          xs: 12, sm: 12, md: 12, lg: 12, xl: 12,
-        }}
       >
         {movie.map((item) => (
           <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={item.Title}>
             <Card
               sx={{
-                maxWidth: 345, height: "92%", mb: 3, backgroundColor: colors.primary[500],
+                maxWidth: 345, height: "92%", mb: 2.5, backgroundColor: colors.primary[500],
               }}
               key={item.Title}
             >

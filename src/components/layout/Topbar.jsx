@@ -83,7 +83,7 @@ function Topbar() {
       </Box>
 
       <Box>
-        <IconButton onClick={colorMode.toggleColorMode}>
+        <IconButton onClick={colorMode.toggleColorMode} sx={{ mt: 3 }}>
           {theme.palette.mode === "dark" ? (
             <DarkModeOutlined />
           ) : (
