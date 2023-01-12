@@ -43,8 +43,12 @@ export const movieSlice = createSlice({
         state.movies = action.payload;
         state.isLoading = false;
       })
+      .addCase(movieDetails.pending, (state) => {
+        state.isLoading = true;
+      })
       .addCase(movieDetails.fulfilled, (state, action) => {
         state.movies = action.payload;
+        state.isLoading = false;
       });
   },
 });
