@@ -2,8 +2,10 @@ import { useTheme } from "@emotion/react";
 import {
   Box, Card, CardContent, CardHeader, CardMedia, Grid, Typography,
 } from "@mui/material";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { tokens } from "../theme";
 import { getData } from "../features/movie/movieSlice";
 
@@ -62,6 +64,12 @@ function Home() {
                 <Typography variant="body1" color={colors.grey[200]}>
                   {item.Plot}
                 </Typography>
+                <Link to={`/moredetails/${item.imdbID}`} style={{ display: "flex", color: colors.blueAccent[300] }}>
+                  <Typography variant="body1">
+                    Read more
+                  </Typography>
+                  <KeyboardArrowRightIcon />
+                </Link>
               </CardContent>
             </Card>
           </Grid>

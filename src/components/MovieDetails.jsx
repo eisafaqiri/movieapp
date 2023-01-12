@@ -1,22 +1,32 @@
 import {
   Box,
-  Container, Divider, Grid, Paper, Typography,
+  Chip,
+  Container, Divider, Grid, Paper, Stack, Typography,
 } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { movieDetails } from "../features/movie/movieSlice";
+import MoreDetailSkeleton from "./layout/MoreDetailSkeleton";
 
 function MovieDetails() {
   const params = useParams();
   const movieId = params.id;
 
-  const { movies } = useSelector((state) => state.movie);
+  const { isLoading, movies } = useSelector((state) => state.movie);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(movieDetails(movieId));
   }, [dispatch, movieId]);
+
+  if (isLoading) {
+    return <MoreDetailSkeleton />;
+  }
+
+  const {
+    Title, Year, Runtime, Genre, Director, Writer, Actors, Plot, Language, Country, Awards, Poster, Ratings, Metascore, imdbRating, imdbVotes, Type, BoxOffice,
+  } = movies;
 
   return (
     <Container sx={{ mt: 2 }}>
@@ -32,8 +42,8 @@ function MovieDetails() {
         <Grid container spacing={2}>
           <Grid item>
             <img
-              alt={movies.Title}
-              src={movies.Poster}
+              alt={Title}
+              src={Poster}
               style={{
                 maxWidth: "100%", height: "100%",
               }}
@@ -43,17 +53,17 @@ function MovieDetails() {
             <Grid item xs>
               <Grid item xs>
                 <Typography variant="h2" component="div">
-                  {movies.Title}
+                  {Title}
                 </Typography>
                 <Typography variant="body1" color="text.secondary" gutterBottom>
-                  {movies.Year}
+                  {Year}
                   {" "}
                   •
                   {" "}
-                  {movies.Runtime}
+                  {Runtime}
                 </Typography>
               </Grid>
-              <Grid item xs={12} sm={12} md={12} container sx={{ alignItems: { xs: "start", lg: "end" } }}>
+              <Grid item xs={12} sm={12} md={12} container sx={{ alignItems: "end" }}>
                 <Box sx={{ display: "flex", alignItems: "end" }}>
                   <Grid
                     component="div"
@@ -69,10 +79,10 @@ function MovieDetails() {
                     }}
                   >
                     <Typography variant="h3" fontWeight="bold">
-                      {movies.imdbRating}
+                      {imdbRating}
                     </Typography>
                     <Typography variant="body2" fontWeight="bold">
-                      {movies.imdbVotes}
+                      {imdbVotes}
                     </Typography>
                     <Typography variant="body2" fontWeight="bold">
                       FROM USERS
@@ -86,12 +96,11 @@ function MovieDetails() {
                       display: "flex",
                       flexDirection: "column",
                       alignItems: "center",
-                      borderRadius: 1,
                       mt: 1,
                     }}
                   >
                     <Typography variant="h3" fontWeight="bold">
-                      {movies.Metascore}
+                      {Metascore}
                     </Typography>
                     <Typography variant="body2">
                       META SCORE
@@ -99,42 +108,82 @@ function MovieDetails() {
                   </Grid>
                 </Box>
                 <Divider orientation="vertical" flexItem />
-                <Box sx={{ display: "flex", flexWrap: { xs: "wrap", sm: "nowrap" } }}>
+                <Grid
+                  component="div"
+                  sx={{
+                    height: 42,
+                    width: {
+                      xs: 72,
+                      sm: 130,
+                    },
+
+                    display: "flex",
+                    alignItems: "center",
+                    textAlign: "center",
+                    ml: 0.5,
+                    mt: { xs: 1.5, sm: 0 },
+                  }}
+                >
                   {React.Children.toArray(
-                    movies.Ratings && movies.Ratings.map((rate) => (
-                      <Grid
-                        component="div"
-                        sx={{
-                          height: 42,
-                          width: {
-                            xs: 70,
-                            sm: 70,
-                            md: 80,
-                            lg: 130,
-                          },
-                          display: "flex",
-                          flexDirection: "column",
-                          textAlign: "center",
-                          mt: 1,
-                          ml: 1,
-                        }}
-                      >
+                    Ratings && Ratings.slice(1, 2).map((rate) => (
+                      <div>
                         <Typography variant="h3" fontWeight="bold">
-                          {rate.Value.split(1)}
+                          {rate.Value}
                         </Typography>
-                        <Typography variant="body2" sx={{ fontSize: { xs: 10 } }}>
-                          {rate.Source}
+                        <Typography variant="body2">
+                          {rate.Source.toUpperCase()}
                         </Typography>
-                      </Grid>
+                      </div>
                     )),
                   )}
-                </Box>
+                </Grid>
               </Grid>
               <Grid item container>
-                <Typography sx={{ cursor: "pointer" }} variant="body2">
-                  Director:
+                <Stack direction="row" mt={1} spacing={1} flexWrap="wrap">
+                  <Chip variant="outlined" label={Genre} color="secondary" />
+                  <Chip variant="outlined" label={Country} color="secondary" />
+                </Stack>
+              </Grid>
+              <Grid mt={1}>
+                <Typography variant="body1" sx={{ fontSize: { xs: 14, md: 16 } }}>
+                  <span>Director:</span>
                   {" "}
-                  {movies.Director}
+                  {Director}
+                </Typography>
+                <Typography variant="body1" sx={{ fontSize: { xs: 14, md: 16 } }}>
+                  <span>Writer:</span>
+                  {" "}
+                  {Writer}
+                </Typography>
+                <Typography variant="body1" sx={{ fontSize: { xs: 14, md: 16 } }}>
+                  <span>Actors:</span>
+                  {" "}
+                  {Actors}
+                </Typography>
+                <Typography variant="body1" sx={{ fontSize: { xs: 14, md: 16 } }}>
+                  <span>Awards:</span>
+                  {" "}
+                  {Awards}
+                </Typography>
+                <Typography variant="body1" sx={{ fontSize: { xs: 14, md: 16 } }}>
+                  <span>Box Office:</span>
+                  {" "}
+                  {BoxOffice}
+                </Typography>
+                <Typography variant="body1" sx={{ fontSize: { xs: 14, md: 16 } }}>
+                  <span>Plot:</span>
+                  {" "}
+                  {Plot}
+                </Typography>
+                <Typography variant="body1" sx={{ fontSize: { xs: 14, md: 16 } }}>
+                  <span>Language:</span>
+                  {" "}
+                  {Language}
+                </Typography>
+                <Typography variant="body1" sx={{ fontSize: { xs: 14, md: 16 } }}>
+                  <span>Type:</span>
+                  {" "}
+                  {Type}
                 </Typography>
               </Grid>
             </Grid>

@@ -130,7 +130,7 @@ export const themeSettings = (mode) => {
             main: colors.primary[200],
           },
           secondary: {
-            main: colors.greenAccent[500],
+            main: colors.primary[100],
           },
           neutral: {
             dark: colors.grey[700],
@@ -145,7 +145,7 @@ export const themeSettings = (mode) => {
             main: colors.primary[100],
           },
           secondary: {
-            main: colors.greenAccent[500],
+            main: colors.primary[100],
           },
           neutral: {
             dark: colors.grey[700],
