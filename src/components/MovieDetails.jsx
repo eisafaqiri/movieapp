@@ -139,48 +139,48 @@ function MovieDetails() {
                 </Grid>
               </Grid>
               <Grid item container>
-                <Stack direction="row" mt={1} spacing={1} flexWrap="wrap">
-                  <Chip variant="outlined" label={Genre} color="secondary" />
+                <Stack direction="row" mt={1.3} spacing={{ xs: 0, md: 1 }} flexWrap="wrap">
+                  <Chip variant="outlined" label={Genre} color="secondary" sx={{ mb: 0.5 }} />
                   <Chip variant="outlined" label={Country} color="secondary" />
                 </Stack>
               </Grid>
               <Grid mt={1}>
-                <Typography variant="body1" sx={{ fontSize: { xs: 14, md: 16 } }}>
+                <Typography variant="h6">
                   <span>Director:</span>
                   {" "}
                   {Director}
                 </Typography>
-                <Typography variant="body1" sx={{ fontSize: { xs: 14, md: 16 } }}>
+                <Typography variant="h6">
                   <span>Writer:</span>
                   {" "}
                   {Writer}
                 </Typography>
-                <Typography variant="body1" sx={{ fontSize: { xs: 14, md: 16 } }}>
+                <Typography variant="h6">
                   <span>Actors:</span>
                   {" "}
                   {Actors}
                 </Typography>
-                <Typography variant="body1" sx={{ fontSize: { xs: 14, md: 16 } }}>
+                <Typography variant="h6">
                   <span>Awards:</span>
                   {" "}
                   {Awards}
                 </Typography>
-                <Typography variant="body1" sx={{ fontSize: { xs: 14, md: 16 } }}>
+                <Typography variant="h6">
                   <span>Box Office:</span>
                   {" "}
                   {BoxOffice}
                 </Typography>
-                <Typography variant="body1" sx={{ fontSize: { xs: 14, md: 16 } }}>
+                <Typography variant="h6">
                   <span>Plot:</span>
                   {" "}
                   {Plot}
                 </Typography>
-                <Typography variant="body1" sx={{ fontSize: { xs: 14, md: 16 } }}>
+                <Typography variant="h6">
                   <span>Language:</span>
                   {" "}
                   {Language}
                 </Typography>
-                <Typography variant="body1" sx={{ fontSize: { xs: 14, md: 16 } }}>
+                <Typography variant="h6">
                   <span>Type:</span>
                   {" "}
                   {Type}
