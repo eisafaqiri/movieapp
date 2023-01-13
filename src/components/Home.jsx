@@ -61,11 +61,11 @@ function Home() {
                 alt={item.Title}
               />
               <CardContent>
-                <Typography variant="body1" color={colors.grey[200]}>
+                <Typography variant="body1" fontSize={13} color={colors.grey[200]}>
                   {item.Plot}
                 </Typography>
                 <Link to={`/moredetails/${item.imdbID}`} style={{ display: "flex", color: colors.blueAccent[300] }}>
-                  <Typography variant="body1">
+                  <Typography variant="body1" fontSize={13}>
                     Read more
                   </Typography>
                   <KeyboardArrowRightIcon />
