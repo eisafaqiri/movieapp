@@ -14,3 +14,12 @@ body #root,
 span {
 	font-weight: bold;
 }
+
+.link {
+	text-decoration: none;
+	padding-left: 10px;
+}
+
+.link:hover {
+	text-decoration: underline;
+}

@@ -8,7 +8,7 @@ const {
 
 const initialState = {
   movies: [],
-  topMovies: data,
+  topMovies: [],
   isLoading: false,
 };
 
@@ -26,14 +26,12 @@ export const movieDetails = createAsyncThunk("movie/movieDetails", async (movieI
   return result;
 });
 
+export const getData = createAsyncThunk("data/getData", async () => data);
+
 export const movieSlice = createSlice({
   name: "movie",
   initialState,
-  reducers: {
-    getData: (state, action) => {
-      state.topMovies = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(searchMovies.pending, (state) => {
@@ -49,10 +47,14 @@ export const movieSlice = createSlice({
       .addCase(movieDetails.fulfilled, (state, action) => {
         state.movies = action.payload;
         state.isLoading = false;
+      })
+      .addCase(getData.fulfilled, (state, action) => {
+        state.topMovies = action.payload;
       });
   },
 });
 
-export const { getData } = movieSlice.actions;
+// eslint-disable-next-line no-empty-pattern
+export const { } = movieSlice.actions;
 
 export default movieSlice.reducer;
