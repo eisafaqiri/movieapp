@@ -91,6 +91,7 @@ function TopMovies() {
         alignItems: "end",
         justifyContent: "space-between",
         mt: 3,
+        mb: 1,
       }}
       >
         <Typography variant="h5">
@@ -101,13 +102,24 @@ function TopMovies() {
         </Typography>
       </Box>
       {data && data.map((item) => (
-        <List key={item.imdbID} sx={{ width: "100%", maxWidth: 1400 }}>
+        <List
+          key={item.imdbID}
+          sx={{
+            width: "100%",
+            maxWidth: 1400,
+            backgroundColor: colors.primary[500],
+            mb: 1,
+            borderRadius: 2,
+          }}
+        >
           <ListItem sx={{ display: "flex", justifyContent: "space-between" }}>
             <Box display="flex" alignItems="center">
               <img src={item.Poster} alt={item.Title} height="80" width="55" loading="lazy" />
               <Link to={`/moredetails/${item.imdbID}`} className="link" style={{ display: "flex", color: colors.blueAccent[300] }}>
-                <Typography variant="h5">
+                <Typography variant="h5" color={colors.grey[100]}>
                   {item.Rank}
+                </Typography>
+                <Typography variant="h5">
                   .
                   {" "}
                   {item.Title}
