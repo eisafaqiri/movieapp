@@ -1,12 +1,9 @@
 import * as React from "react";
 import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-// import MenuIcon from "@mui/icons-material/Menu";
-// import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import ListItem from "@mui/material/ListItem";
@@ -14,6 +11,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import {
+  GitHub,
   Home, Info, Movie,
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
@@ -78,58 +76,70 @@ export default function Sidebar() {
   const colors = tokens(theme.palette.mode);
 
   return (
-    <Box sx={{ display: "flex" }}>
-      <Drawer variant="permanent" open={open}>
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerToggle}>
-            {open ? <KeyboardDoubleArrowLeftIcon /> : <KeyboardDoubleArrowRightIcon />}
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        <List>
-          {[
-            {
-              value: "Home",
-              icon: <Home />,
-              link: "/",
-            },
-            {
-              value: "250 Top",
-              icon: <Movie />,
-              link: "/topmovies",
-            },
-            {
-              value: "About",
-              icon: <Info />,
-              link: "/about",
-            },
-          ].map((item) => (
-            <ListItem key={item.value} disablePadding sx={{ display: "block" }}>
-              <Link to={item.link} style={{ textDecoration: "none", color: colors.primary[100] }}>
-                <ListItemButton
+    <Drawer variant="permanent" open={open} sx={{ position: "relative" }}>
+      <DrawerHeader>
+        <IconButton onClick={handleDrawerToggle}>
+          {open ? <KeyboardDoubleArrowLeftIcon /> : <KeyboardDoubleArrowRightIcon />}
+        </IconButton>
+      </DrawerHeader>
+      <Divider />
+      <List>
+        {[
+          {
+            value: "Home",
+            icon: <Home />,
+            link: "/",
+          },
+          {
+            value: "250 Top",
+            icon: <Movie />,
+            link: "/topmovies",
+          },
+          {
+            value: "About",
+            icon: <Info />,
+            link: "/about",
+          },
+        ].map((item) => (
+          <ListItem key={item.value} disablePadding sx={{ display: "block" }}>
+            <Link to={item.link} style={{ textDecoration: "none", color: colors.primary[100] }}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
                   sx={{
-                    minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
+                    minWidth: 0,
+                    mr: open ? 3 : "auto",
+                    justifyContent: "center",
                   }}
                 >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                  >
-                    {item.icon}
-                  </ListItemIcon>
-                  <ListItemText primary={item.value} sx={{ opacity: open ? 1 : 0 }} />
-                </ListItemButton>
-              </Link>
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
-
-    </Box>
+                  {item.icon}
+                </ListItemIcon>
+                <ListItemText primary={item.value} sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </Link>
+          </ListItem>
+        ))}
+      </List>
+      <a
+        href="https://github.com/eisafaqiri"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          position: "absolute",
+          bottom: 0,
+          width: "100%",
+          textAlign: "center",
+          textDecoration: "none",
+          color: colors.grey[100],
+        }}
+      >
+        <GitHub fontSize="large" />
+      </a>
+    </Drawer>
   );
 }

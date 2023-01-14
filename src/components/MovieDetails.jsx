@@ -1,15 +1,20 @@
+import { useTheme } from "@emotion/react";
 import {
   Box,
   Chip,
-  Container, Divider, Grid, Paper, Stack, Typography,
+  Container, Divider, Grid, List, ListItem, ListItemText, Paper, Stack, Typography,
 } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { movieDetails } from "../features/movie/movieSlice";
+import { tokens } from "../theme";
 import MoreDetailSkeleton from "./layout/MoreDetailSkeleton";
 
 function MovieDetails() {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+
   const params = useParams();
   const movieId = params.id;
 
@@ -28,6 +33,37 @@ function MovieDetails() {
     Title, Year, Runtime, Genre, Director, Writer, Actors, Plot, Language, Country, Awards, Poster, Ratings, Metascore, imdbRating, imdbVotes, Type, BoxOffice,
   } = movies;
 
+  const detailsList = [
+    {
+      title: "Director",
+      value: Director,
+    },
+    {
+      title: "Writer",
+      value: Writer,
+    },
+    {
+      title: "Actors",
+      value: Actors,
+    },
+    {
+      title: "Awards",
+      value: Awards,
+    },
+    {
+      title: "Box Office",
+      value: BoxOffice,
+    },
+    {
+      title: "Language",
+      value: Language,
+    },
+    {
+      title: "Type",
+      value: Type,
+    },
+  ];
+
   return (
     <Container sx={{ mt: 2 }}>
       <Paper
@@ -35,7 +71,7 @@ function MovieDetails() {
           p: 2,
           margin: "auto",
           flexGrow: 1,
-          backgroundColor: (theme) => (theme.palette.mode === "dark" ? "#1A2027" : "#fffefe"),
+          backgroundColor: () => (theme.palette.mode === "dark" ? "#1A2027" : "#fffefe"),
         }}
       >
 
@@ -144,47 +180,30 @@ function MovieDetails() {
                   <Chip variant="outlined" label={Country} color="secondary" />
                 </Stack>
               </Grid>
-              <Grid mt={1}>
-                <Typography variant="h6">
-                  <span>Director:</span>
-                  {" "}
-                  {Director}
-                </Typography>
-                <Typography variant="h6">
-                  <span>Writer:</span>
-                  {" "}
-                  {Writer}
-                </Typography>
-                <Typography variant="h6">
-                  <span>Actors:</span>
-                  {" "}
-                  {Actors}
-                </Typography>
-                <Typography variant="h6">
-                  <span>Awards:</span>
-                  {" "}
-                  {Awards}
-                </Typography>
-                <Typography variant="h6">
-                  <span>Box Office:</span>
-                  {" "}
-                  {BoxOffice}
-                </Typography>
-                <Typography variant="h6">
-                  <span>Plot:</span>
-                  {" "}
+              <Grid item container>
+                <Typography variant="body1">
                   {Plot}
                 </Typography>
-                <Typography variant="h6">
-                  <span>Language:</span>
-                  {" "}
-                  {Language}
-                </Typography>
-                <Typography variant="h6">
-                  <span>Type:</span>
-                  {" "}
-                  {Type}
-                </Typography>
+                {detailsList.map((item) => (
+                  <Grid item key={item.title} xs={12} sm={6} md={4} xl={4}>
+                    <List dense>
+                      <ListItem>
+                        <ListItemText
+                          primary={(
+                            <Typography variant="body1" color={colors.grey[100]} fontSize={14}>
+                              {item.title}
+                            </Typography>
+                          )}
+                          secondary={(
+                            <Typography variant="body2" color={colors.grey[200]}>
+                              {item.value}
+                            </Typography>
+                          )}
+                        />
+                      </ListItem>
+                    </List>
+                  </Grid>
+                ))}
               </Grid>
             </Grid>
           </Grid>
