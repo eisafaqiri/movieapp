@@ -36,7 +36,7 @@ function Topbar() {
       sx={{
         display: "flex",
         justifyContent: "space-between",
-        p: 2,
+        pr: 2,
       }}
     >
       <Box />
