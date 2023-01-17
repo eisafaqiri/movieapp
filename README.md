@@ -1,4 +1,4 @@
-# Movie-App
+# Movie App
 Welcome to the Movie App! This app allows you to search for and read about your favorite movies. It is built using React.
 ## Features
 * Search for movies by title
