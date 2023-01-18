@@ -21,7 +21,7 @@ function Home() {
   const colors = tokens(theme.palette.mode);
 
   return (
-    <Container>
+    <Container sx={{ mt: 10 }}>
       <Typography variant="h1" pb={2}>
         IMDb Top 10 Movies
       </Typography>

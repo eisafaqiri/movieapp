@@ -2,7 +2,6 @@ import { Box, CssBaseline, ThemeProvider } from "@mui/material";
 import { Route, Routes } from "react-router-dom";
 import { ColorModeContext, useMode } from "./theme";
 import Sidebar from "./components/layout/Sidebar";
-import Topbar from "./components/layout/Topbar";
 import TopMovies from "./components/TopMovies";
 import About from "./components/About";
 import Home from "./components/Home";
@@ -18,7 +17,6 @@ function App() {
         <Box sx={{ display: "flex", overflowY: "scroll" }}>
           <Sidebar />
           <main className="content">
-            <Topbar />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/topmovies" element={<TopMovies />} />
