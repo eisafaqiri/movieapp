@@ -11,6 +11,8 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import { Link, useNavigate } from "react-router-dom";
 import { useTheme } from "@emotion/react";
 import { useContext, useState } from "react";
@@ -20,12 +22,11 @@ import {
 import {
   Button,
   FormControlLabel,
-  FormGroup,
   InputAdornment,
   TextField,
 } from "@mui/material";
 import {
-  DrawerHeader, AppBar, Drawer, MaterialUISwitch,
+  DrawerHeader, AppBar, Drawer,
 } from "./sidebarMUIStyle";
 import { ColorModeContext, tokens } from "../../theme";
 
@@ -72,7 +73,10 @@ export default function Sidebar() {
             backgroundColor: colors.primary[500],
           }}
         >
-          <Box sx={{ width: "100%", display: "flex", justifyContent: "space-between" }}>
+          <Box sx={{
+            width: "100%", display: "flex", justifyContent: "space-between",
+          }}
+          >
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <IconButton
                 aria-label="open drawer"
@@ -110,7 +114,7 @@ export default function Sidebar() {
                   value={inputValue}
                   sx={{
                     width: {
-                      xs: 180,
+                      xs: 250,
                       sm: 250,
                       md: 400,
                       lg: 500,
@@ -136,6 +140,7 @@ export default function Sidebar() {
                   variant="contained"
                   color="neutral"
                   sx={{
+                    display: { xs: "none", sm: "block" },
                     ml: 0.5,
                     height: "42px",
                     width: "17%",
@@ -148,7 +153,17 @@ export default function Sidebar() {
           </Box>
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open} sx={{ position: "relative" }}>
+      <Drawer
+        variant="permanent"
+        open={open}
+        sx={{
+          position: "relative",
+          display: {
+            xs: open ? "block" : "none",
+            sm: open ? "block" : "block",
+          },
+        }}
+      >
         <DrawerHeader>
           <Typography variant="h5" noWrap color={colors.grey[100]} sx={{ display: { xs: "block", sm: "none" } }}>
             Movie API Aplication
@@ -200,12 +215,25 @@ export default function Sidebar() {
             </ListItem>
           ))}
         </List>
-        <FormGroup onChange={colorMode.toggleColorMode} sx={{ position: "absolute", bottom: 50 }}>
-          <FormControlLabel
-            control={<MaterialUISwitch sx={{ m: { xs: 1, md: 1.4 } }} />}
-            label={open ? "Switch mode" : " "}
-          />
-        </FormGroup>
+        <Box
+          component="form"
+          onClick={colorMode.toggleColorMode}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            ml: 1,
+            position: "absolute",
+            bottom: 55,
+            cursor: "pointer",
+          }}
+        >
+          <IconButton color="inherit">
+            {theme.palette.mode === "dark" ? <DarkModeOutlinedIcon fontSize="large" /> : <LightModeOutlinedIcon fontSize="large" />}
+          </IconButton>
+          <Typography sx={{ ml: 0.1, display: open ? "block" : "none" }}>
+            {theme.palette.mode === "dark" ? "Dark mode" : "Light Mode"}
+          </Typography>
+        </Box>
         <a
           href="https://github.com/eisafaqiri"
           target="_blank"
@@ -224,8 +252,8 @@ export default function Sidebar() {
               <GitHub
                 fontSize="large"
                 sx={{
-                  m: { xs: 1, md: 1 },
-                  width: open ? 52 : 35,
+                  m: 1,
+                  width: 35,
                   height: 34,
                 }}
               />

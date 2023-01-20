@@ -65,13 +65,13 @@ function MovieDetails() {
   ];
 
   return (
-    <Container sx={{ mt: 15 }}>
+    <Container sx={{ mt: 12, pb: 6 }}>
       <Paper
         sx={{
           p: 2,
           margin: "auto",
           flexGrow: 1,
-          backgroundColor: () => (theme.palette.mode === "dark" ? "#1A2027" : "#fffefe"),
+          backgroundColor: () => (theme.palette.mode === "dark" ? colors.primary[600] : "#fffefe"),
         }}
       >
 
@@ -175,13 +175,13 @@ function MovieDetails() {
                 </Grid>
               </Grid>
               <Grid item container>
-                <Stack direction="row" mt={1.3} spacing={{ xs: 0, md: 1 }} flexWrap="wrap">
-                  <Chip variant="outlined" label={Genre} color="secondary" sx={{ mb: 0.5 }} />
+                <Stack direction="row" mt={1.5} spacing={{ xs: 0, md: 1 }} flexWrap="wrap">
+                  <Chip variant="outlined" label={Genre} color="secondary" sx={{ mb: 1 }} />
                   <Chip variant="outlined" label={Country} color="secondary" />
                 </Stack>
               </Grid>
               <Grid item container>
-                <Typography variant="body1">
+                <Typography variant="body1" sx={{ mt: 1 }}>
                   {Plot}
                 </Typography>
                 {detailsList.map((item) => (
