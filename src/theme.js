@@ -53,7 +53,7 @@ export const tokens = (mode) => ({
         200: "#c3c6fd",
         300: "#a4a9fc",
         400: "#868dfb",
-        500: "#6870fa",
+        500: "#14162d",
         600: "#535ac8",
         700: "#3e4396",
         800: "#2a2d64",
@@ -109,7 +109,7 @@ export const tokens = (mode) => ({
         200: "#2a2d64",
         300: "#3e4396",
         400: "#535ac8",
-        500: "#6870fa",
+        500: "#ededec",
         600: "#868dfb",
         700: "#a4a9fc",
         800: "#c3c6fd",
@@ -133,8 +133,8 @@ export const themeSettings = (mode) => {
             main: colors.primary[100],
           },
           neutral: {
-            dark: colors.grey[700],
-            main: colors.grey[500],
+            dark: colors.primary[300],
+            main: colors.primary[400],
             light: colors.grey[100],
           },
           background: {
@@ -148,8 +148,8 @@ export const themeSettings = (mode) => {
             main: colors.primary[100],
           },
           neutral: {
-            dark: colors.grey[700],
-            main: colors.grey[500],
+            dark: colors.grey[100],
+            main: colors.grey[200],
             light: colors.grey[100],
           },
           background: {

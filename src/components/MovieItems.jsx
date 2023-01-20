@@ -11,7 +11,10 @@ function MovieItems({
 }) {
   return (
     <Box sx={{
-      flexGrow: 1, ml: 2, mr: 2, mt: 3,
+      flexGrow: 1,
+      ml: 2,
+      mr: 2,
+      mt: 10,
     }}
     >
       <Typography variant="h3" mb="1rem">

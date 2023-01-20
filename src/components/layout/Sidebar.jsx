@@ -1,7 +1,4 @@
-import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import MuiDrawer from "@mui/material/Drawer";
-import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
@@ -18,82 +15,19 @@ import { Link, useNavigate } from "react-router-dom";
 import { useTheme } from "@emotion/react";
 import { useContext, useState } from "react";
 import {
-  DarkModeOutlined,
-  GitHub, Home, Info, LightModeOutlined, Movie, SearchOutlined,
+  GitHub, Home, Info, Movie, SearchOutlined,
 } from "@mui/icons-material";
 import {
   Button,
-  Container,
+  FormControlLabel,
+  FormGroup,
   InputAdornment,
   TextField,
 } from "@mui/material";
+import {
+  DrawerHeader, AppBar, Drawer, MaterialUISwitch,
+} from "./sidebarMUIStyle";
 import { ColorModeContext, tokens } from "../../theme";
-
-const drawerWidth = 200;
-
-const openedMixin = (theme) => ({
-  width: drawerWidth,
-  transition: theme.transitions.create("width", {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.enteringScreen,
-  }),
-  overflowX: "hidden",
-});
-
-const closedMixin = (theme) => ({
-  transition: theme.transitions.create("width", {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  overflowX: "hidden",
-  width: `calc(${theme.spacing(7)} + 1px)`,
-  [theme.breakpoints.up("sm")]: {
-    width: `calc(${theme.spacing(8)} + 1px)`,
-  },
-});
-
-const DrawerHeader = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "flex-end",
-  padding: theme.spacing(0, 1),
-  ...theme.mixins.toolbar,
-}));
-
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
-  zIndex: theme.zIndex.drawer + 1,
-  transition: theme.transitions.create(["width", "margin"], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}));
-
-const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== "open" })(
-  ({ theme, open }) => ({
-    width: drawerWidth,
-    flexShrink: 0,
-    whiteSpace: "nowrap",
-    boxSizing: "border-box",
-    ...(open && {
-      ...openedMixin(theme),
-      "& .MuiDrawer-paper": openedMixin(theme),
-    }),
-    ...(!open && {
-      ...closedMixin(theme),
-      "& .MuiDrawer-paper": closedMixin(theme),
-    }),
-  }),
-);
 
 export default function Sidebar() {
   const [open, setOpen] = useState(false);
@@ -112,101 +46,113 @@ export default function Sidebar() {
 
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState("");
-  // const [emptyInput, setEmptyInput] = useState(false);
+  const [emptyInput, setEmptyInput] = useState(false);
 
-  // const handleInput = (e) => setInputValue(e.target.value);
+  const handleInput = (e) => setInputValue(e.target.value);
 
   const handleForm = (e) => {
     e.preventDefault();
     if (inputValue.trim() === "") {
-      // return setEmptyInput(true);
+      setEmptyInput(true);
+
+      return setTimeout(() => {
+        setEmptyInput(false);
+      }, 3000);
     }
     navigate(`/search?s=${inputValue}`);
-    // setEmptyInput(false);
+    setEmptyInput(false);
     return setInputValue("");
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <>
       <AppBar position="fixed" open={open}>
         <Toolbar
           sx={{
             backgroundColor: colors.primary[500],
-            display: "flex",
           }}
         >
-          <Box display="flex">
-            <IconButton
-              aria-label="open drawer"
-              onClick={handleDrawerOpen}
-              edge="start"
-              sx={{
-                ml: { xs: 0, sm: -0.3 },
-                padding: 0,
-                marginRight: 5,
-                ...(open && { display: "none" }),
-              }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h5" noWrap color={colors.grey[100]} sx={{ display: { xs: "none", md: "block" } }}>
-              Movie API Aplication
-            </Typography>
-          </Box>
-          <Container
-            maxWidth="sm"
-          >
-            <Box
-              onSubmit={handleForm}
-              component="form"
-              sx={{
-                display: "flex",
-                alignItems: "center",
-              }}
-              noValidate
-              autoComplete="off"
-            >
-              <TextField
-                placeholder="Find Movies, TV Shows and more..."
-                variant="outlined"
-                sx={{ width: { xs: 150, sm: 300 } }}
-                InputProps={{
-                  style: {
-                    height: "35px",
-                    backgroundColor: colors.primary[400],
-                    boxShadow: "0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%)",
-                  },
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <SearchOutlined />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              <Button
-                onClick={handleForm}
-                variant="contained"
+          <Box sx={{ width: "100%", display: "flex", justifyContent: "space-between" }}>
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <IconButton
+                aria-label="open drawer"
+                onClick={handleDrawerOpen}
+                edge="start"
                 sx={{
-                  backgroundColor: colors.primary[400], color: colors.grey[100], ml: 0.3, height: "35px",
+                  ml: { xs: 0, sm: -0.3 },
+                  padding: 0,
+                  marginRight: { xs: 3, sm: 5 },
+                  ...(open && { display: "none" }),
                 }}
               >
-                Serach
-              </Button>
+                <MenuIcon />
+              </IconButton>
+              <Typography variant="h5" noWrap color={colors.grey[100]} sx={{ display: { xs: "none", sm: "block" }, fontSize: { xs: 16, md: 20 } }}>
+                Movie API Aplication
+              </Typography>
             </Box>
-          </Container>
-          <Box>
-            <IconButton onClick={colorMode.toggleColorMode}>
-              {theme.palette.mode === "dark" ? (
-                <DarkModeOutlined />
-              ) : (
-                <LightModeOutlined />
-              )}
-            </IconButton>
+            <Box sx={{ display: "flex" }}>
+              <Box
+                onSubmit={handleForm}
+                component="form"
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                }}
+                noValidate
+                autoComplete="off"
+              >
+                <TextField
+                  label={!emptyInput ? "Find Movies..." : "Please fill the input"}
+                  variant="filled"
+                  fullWidth={true}
+                  onChange={handleInput}
+                  value={inputValue}
+                  sx={{
+                    width: {
+                      xs: 180,
+                      sm: 250,
+                      md: 400,
+                      lg: 500,
+                      xl: 600,
+                    },
+                    backgroundColor: !emptyInput ? colors.blueAccent[500] : colors.redAccent[600],
+                    borderRadius: 1,
+                  }}
+                  InputProps={{
+                    style: {
+                      height: "42px",
+                      boxShadow: "0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%)",
+                    },
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <SearchOutlined />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                <Button
+                  onClick={handleForm}
+                  variant="contained"
+                  color="neutral"
+                  sx={{
+                    ml: 0.5,
+                    height: "42px",
+                    width: "17%",
+                  }}
+                >
+                  Serach
+                </Button>
+              </Box>
+            </Box>
           </Box>
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open} sx={{ position: "relative" }}>
         <DrawerHeader>
+          <Typography variant="h5" noWrap color={colors.grey[100]} sx={{ display: { xs: "block", sm: "none" } }}>
+            Movie API Aplication
+          </Typography>
           <IconButton onClick={handleDrawerClose}>
             {open ? <KeyboardDoubleArrowLeftIcon /> : <KeyboardDoubleArrowRightIcon />}
           </IconButton>
@@ -254,6 +200,12 @@ export default function Sidebar() {
             </ListItem>
           ))}
         </List>
+        <FormGroup onChange={colorMode.toggleColorMode} sx={{ position: "absolute", bottom: 50 }}>
+          <FormControlLabel
+            control={<MaterialUISwitch sx={{ m: { xs: 1, md: 1.4 } }} />}
+            label={open ? "Switch mode" : " "}
+          />
+        </FormGroup>
         <a
           href="https://github.com/eisafaqiri"
           target="_blank"
@@ -267,9 +219,21 @@ export default function Sidebar() {
             marginLeft: "15px",
           }}
         >
-          <GitHub fontSize="large" />
+          <FormControlLabel
+            control={(
+              <GitHub
+                fontSize="large"
+                sx={{
+                  m: { xs: 1, md: 1 },
+                  width: open ? 52 : 35,
+                  height: 34,
+                }}
+              />
+)}
+            label={open ? "Github" : " "}
+          />
         </a>
       </Drawer>
-    </Box>
+    </>
   );
 }
