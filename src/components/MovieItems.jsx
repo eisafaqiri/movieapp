@@ -15,6 +15,7 @@ function MovieItems({
       ml: 2,
       mr: 2,
       mt: 10,
+      pb: 5,
     }}
     >
       <Typography variant="h3" mb="1rem">
@@ -41,7 +42,7 @@ function MovieItems({
             >
               <CardHeader
                 action={(
-                  <Typography variant="subtitle1" color={colors.greenAccent[400]} ml="1px">
+                  <Typography variant="subtitle1" color={colors.greenAccent[400]} ml="1px" mt={0.5}>
                     {movie.Year}
                   </Typography>
                 )}

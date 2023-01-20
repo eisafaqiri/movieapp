@@ -2,6 +2,7 @@ import { useTheme } from "@emotion/react";
 import {
   Card, CardContent, CardHeader, CardMedia, Container, Grid, Typography,
 } from "@mui/material";
+import StarIcon from "@mui/icons-material/Star";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -21,7 +22,7 @@ function Home() {
   const colors = tokens(theme.palette.mode);
 
   return (
-    <Container sx={{ mt: 10 }}>
+    <Container sx={{ mt: 10, pb: 8 }}>
       <Typography variant="h1" pb={2}>
         IMDb Top 10 Movies
       </Typography>
@@ -40,7 +41,18 @@ function Home() {
               <CardHeader
                 sx={{ height: "15%" }}
                 action={(
-                  <Typography variant="h6" color={colors.greenAccent[400]} ml="1px">
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      color: colors.greenAccent[500],
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 0.1,
+                      mt: 1,
+                    }}
+                  >
+                    <StarIcon sx={{ pb: 0.3, color: "#E7B81E" }} />
+                    {" "}
                     {item.imdbRating}
                   </Typography>
           )}

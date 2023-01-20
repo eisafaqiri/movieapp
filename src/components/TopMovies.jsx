@@ -45,14 +45,16 @@ function TopMovies() {
   };
 
   return (
-    <Container sx={{ mt: 10 }}>
+    <Container sx={{ mt: 10, pb: 8 }}>
       <Box sx={{
         display: "flex",
         justifyContent: "space-between",
         flexDirection: { xs: "column", sm: "row" },
+        height: 55,
+        alignItems: { xs: "center", sm: "end" },
       }}
       >
-        <Typography variant="h2">
+        <Typography variant="h2" sx={{ fontSize: { sm: 25, md: 30 } }}>
           IMDb Top 250 Movies
         </Typography>
         <Box sx={{
@@ -80,7 +82,7 @@ function TopMovies() {
             variant="outlined"
             color="secondary"
             size="large"
-            sx={{ width: 100, ml: 1.5 }}
+            sx={{ width: 100, height: 40, ml: 1.5 }}
           >
             Sort
           </Button>
@@ -90,7 +92,7 @@ function TopMovies() {
         display: "flex",
         alignItems: "end",
         justifyContent: "space-between",
-        mt: 3,
+        mt: { xs: 10, sm: 5 },
         mb: 1,
       }}
       >
