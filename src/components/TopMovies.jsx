@@ -45,7 +45,7 @@ function TopMovies() {
   };
 
   return (
-    <Container>
+    <Container sx={{ mt: 10 }}>
       <Box sx={{
         display: "flex",
         justifyContent: "space-between",

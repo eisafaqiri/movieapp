@@ -6,7 +6,7 @@ import React from "react";
 
 function MoreDetailSkeleton() {
   return (
-    <Container sx={{ mt: 2 }}>
+    <Container sx={{ mt: 15 }}>
       <Paper
         sx={{
           p: 2,
