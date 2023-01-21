@@ -6,13 +6,13 @@ import React from "react";
 
 function MoreDetailSkeleton() {
   return (
-    <Container sx={{ mt: 15 }}>
+    <Container sx={{ mt: 12 }}>
       <Paper
         sx={{
           p: 2,
           margin: "auto",
           flexGrow: 1,
-          backgroundColor: (theme) => (theme.palette.mode === "dark" ? "#1A2027" : "#fffefe"),
+          backgroundColor: (theme) => (theme.palette.mode === "dark" ? "#101224" : "#fffefe"),
         }}
       >
 
