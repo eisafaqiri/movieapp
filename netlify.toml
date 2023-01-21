@@ -1,0 +1,19 @@
+[[redirects]]
+  from = "/topmovies"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/about"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/search"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/moredetails/:id"
+  to = "/"
+  status = 301

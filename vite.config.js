@@ -4,17 +4,6 @@ import react from "@vitejs/plugin-react-swc";
 export default defineConfig({
   plugins: [
     react(),
-    {
-      name: "copy",
-      onWrite(file) {
-        if (file.path === "_redirects") {
-          return {
-            path: "dist/_redirects",
-            contents: file.contents,
-          };
-        }
-      },
-    },
   ],
   base: "/",
   build: {
