@@ -18,7 +18,7 @@ function App() {
           <Sidebar />
           <main className="content">
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route exact path="/" element={<Home />} />
               <Route path="/topmovies" element={<TopMovies />} />
               <Route path="/about" element={<About />} />
               <Route path="/search" element={<SearchMovie />} />
