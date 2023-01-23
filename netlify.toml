@@ -1,11 +1,11 @@
 [[redirects]]
   from = "/topmovies"
-  to = "/"
+  to = "/topmovies"
   status = 301
 
 [[redirects]]
   from = "/about"
-  to = "/"
+  to = "/about"
   status = 301
 
 [[redirects]]
