@@ -116,7 +116,7 @@ function TopMovies() {
         >
           <ListItem sx={{ display: "flex", justifyContent: "space-between" }}>
             <Box display="flex" alignItems="center">
-              <img src={item.Poster} alt={item.Title} height="80" width="55" loading="lazy" />
+              <img src={item.Poster} alt={item.Title} height="80" width="55" />
               <Link to={`/moredetails/${item.imdbID}`} className="link" style={{ display: "flex", color: colors.blueAccent[300] }}>
                 <Typography variant="h5" color={colors.grey[100]}>
                   {item.Rank}

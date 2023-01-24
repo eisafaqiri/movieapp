@@ -19,7 +19,7 @@ function About() {
           p: 2,
           margin: "auto",
           flexGrow: 1,
-          backgroundColor: () => (theme.palette.mode === "dark" ? "#1A2027" : "#fffefe"),
+          backgroundColor: () => (theme.palette.mode === "dark" ? colors.primary[600] : "#fffefe"),
         }}
       >
         <Typography variant="h2" textAlign="center">
