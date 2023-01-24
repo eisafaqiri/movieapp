@@ -8,7 +8,7 @@ Welcome to the Movie App! This app allows you to search for and read about your 
 1. Clone the repository and install dependencies:
 ```
 $ git clone https://github.com/eisafaqiri/Movie-App.git
-$ cd Movie-App
+$ cd movieapp
 $ npm install
 ```
 2. Start the development server:
@@ -20,6 +20,6 @@ $ npm run dev
 * React
 * Redux/Toolkit
 * Material UI
-* The Movie Database (OMDb) API
+* The Open Movie Database (OMDb) API
 ## Contributing
 If you would like to contribute to this project, please create a pull request with a detailed description of your changes.
