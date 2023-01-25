@@ -12,15 +12,15 @@ function SearchMovie() {
   const location = useLocation();
   const inputValue = new URLSearchParams(location.search).get("s");
 
-  const { movies, isLoading } = useSelector((state) => state.movie);
+  const { movies, pageNumber, isLoading } = useSelector((state) => state.movie);
   const dispatch = useDispatch();
 
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
   useEffect(() => {
-    dispatch(searchMovies(inputValue));
-  }, [dispatch, inputValue]);
+    dispatch(searchMovies({ input: inputValue, page: pageNumber }));
+  }, [dispatch, inputValue, pageNumber]);
 
   const { Response, Search, totalResults } = movies;
 

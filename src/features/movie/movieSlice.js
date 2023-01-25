@@ -9,11 +9,14 @@ const {
 const initialState = {
   movies: [],
   topMovies: [],
+  pageNumber: 1,
   isLoading: false,
 };
 
 export const searchMovies = createAsyncThunk("movie/searchMovie", async (searchString) => {
-  const res = await fetch(`${VITE_API_URL}?s=${searchString}&apikey=${VITE_API_KEY}`);
+  const { input, page } = searchString;
+
+  const res = await fetch(`${VITE_API_URL}?s=${input}&page=${page}&apikey=${VITE_API_KEY}`);
   const result = await res.json();
 
   return result;
@@ -31,7 +34,11 @@ export const getData = createAsyncThunk("data/getData", async () => data);
 export const movieSlice = createSlice({
   name: "movie",
   initialState,
-  reducers: {},
+  reducers: {
+    updatePageNumber: (state, action) => {
+      state.pageNumber = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(searchMovies.pending, (state) => {
@@ -54,7 +61,6 @@ export const movieSlice = createSlice({
   },
 });
 
-// eslint-disable-next-line no-empty-pattern
-export const { } = movieSlice.actions;
+export const { updatePageNumber } = movieSlice.actions;
 
 export default movieSlice.reducer;

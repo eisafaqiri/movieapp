@@ -1,13 +1,28 @@
 /* eslint-disable react/prop-types */
 import {
-  Card, CardContent, CardHeader, CardMedia, Container, Grid, Typography,
+  Card, CardContent, CardHeader, CardMedia, Container, Grid, Pagination, Typography,
 } from "@mui/material";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { updatePageNumber } from "../features/movie/movieSlice";
 
 function MovieItems({
   search, totalResults, colors,
 }) {
+  const dispatch = useDispatch();
+  const { pageNumber } = useSelector((state) => state.movie);
+  const [page, setPage] = useState(pageNumber);
+
+  const handleChange = (e, value) => {
+    setPage(value);
+  };
+
+  useEffect(() => {
+    dispatch(updatePageNumber(page));
+  }, [page, dispatch]);
+
   return (
     <Container sx={{
       mt: 10,
@@ -77,6 +92,9 @@ function MovieItems({
             </Card>
           </Grid>
         ))}
+      </Grid>
+      <Grid container justifyContent="center" alignItems="center">
+        <Pagination count={Number(Math.floor(totalResults / 10))} page={page} onChange={handleChange} />
       </Grid>
     </Container>
   );
