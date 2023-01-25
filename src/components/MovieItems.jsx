@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import {
-  Box,
   Card, CardContent, CardHeader, CardMedia, Container, Grid, Typography,
 } from "@mui/material";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
@@ -58,7 +57,7 @@ function MovieItems({
                 image={movie.Poster}
                 alt={movie.Title}
               />
-              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+              <Grid container justifyContent="space-between">
                 <CardContent>
                   <Typography variant="body1" color={colors.grey[200]}>
                     Type:
@@ -74,7 +73,7 @@ function MovieItems({
                     <KeyboardArrowRightIcon />
                   </Link>
                 </CardContent>
-              </Box>
+              </Grid>
             </Card>
           </Grid>
         ))}

@@ -29,7 +29,20 @@ function SearchMovie() {
   }
 
   if (Response === "False") {
-    return <Typography variant="h2" color={colors.redAccent[500]} sx={{ display: "flex", justifyContent: "center", placeItems: "center" }}>Movie not found!</Typography>;
+    return (
+      <Typography
+        variant="h2"
+        color={colors.redAccent[500]}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          placeItems: "center",
+          mt: 15,
+        }}
+      >
+        Movie not found!
+      </Typography>
+    );
   }
 
   return (
