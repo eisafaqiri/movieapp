@@ -92,7 +92,7 @@ export default function Sidebar() {
                 <MenuIcon />
               </IconButton>
               <Typography variant="h5" noWrap color={colors.grey[100]} sx={{ display: { xs: "none", sm: "block" }, fontSize: { xs: 16, md: 20 } }}>
-                Movie API Aplication
+                Movie API Application
               </Typography>
             </Box>
             <Box sx={{ display: "flex" }}>

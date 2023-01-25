@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import {
   Box,
-  Card, CardContent, CardHeader, CardMedia, Grid, Typography,
+  Card, CardContent, CardHeader, CardMedia, Container, Grid, Typography,
 } from "@mui/material";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { Link } from "react-router-dom";
@@ -10,10 +10,7 @@ function MovieItems({
   search, totalResults, colors,
 }) {
   return (
-    <Box sx={{
-      flexGrow: 1,
-      ml: 2,
-      mr: 2,
+    <Container sx={{
       mt: 10,
       pb: 5,
     }}
@@ -26,9 +23,9 @@ function MovieItems({
 
       <Grid
         container
-        spacing={{ xs: 2, md: 3, lg: 3 }}
+        spacing={{ xs: 2, md: 3, lg: 1.5 }}
         columns={{
-          xs: 12, sm: 12, md: 12, lg: 12, xl: 12,
+          xs: 12, sm: 12, md: 12, lg: 12, xl: 10,
         }}
       >
 
@@ -41,8 +38,9 @@ function MovieItems({
               key={movie.Title}
             >
               <CardHeader
+                sx={{ height: 60 }}
                 action={(
-                  <Typography variant="subtitle1" color={colors.greenAccent[400]} ml="1px" mt={0.5}>
+                  <Typography variant="subtitle1" color={colors.greenAccent[400]} ml="1px" mt={1}>
                     {movie.Year}
                   </Typography>
                 )}
@@ -54,7 +52,6 @@ function MovieItems({
                 }
               />
               <CardMedia
-                sx={{ maxWidth: "100%", objectFit: "cover" }}
                 component="img"
                 loading="lazy"
                 height={200}
@@ -82,7 +79,7 @@ function MovieItems({
           </Grid>
         ))}
       </Grid>
-    </Box>
+    </Container>
   );
 }
 
