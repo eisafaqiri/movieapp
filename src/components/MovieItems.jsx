@@ -14,6 +14,7 @@ function MovieItems({
   const dispatch = useDispatch();
   const { pageNumber } = useSelector((state) => state.movie);
   const [page, setPage] = useState(pageNumber);
+  const [count] = useState(Number(Math.floor(totalResults / 10)));
 
   const handleChange = (e, value) => {
     setPage(value);
@@ -94,7 +95,11 @@ function MovieItems({
         ))}
       </Grid>
       <Grid container justifyContent="center" alignItems="center">
-        <Pagination count={Number(Math.floor(totalResults / 10))} page={page} onChange={handleChange} />
+        <Pagination
+          count={Number.isNaN(count) ? 0 : count}
+          page={page}
+          onChange={handleChange}
+        />
       </Grid>
     </Container>
   );
