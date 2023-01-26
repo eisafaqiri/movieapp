@@ -25,12 +25,15 @@ import {
   InputAdornment,
   TextField,
 } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { updatePageNumber } from "../../features/movie/movieSlice";
 import {
   DrawerHeader, AppBar, Drawer,
 } from "./sidebarMUIStyle";
 import { ColorModeContext, tokens } from "../../theme";
 
 export default function Sidebar() {
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = () => {
@@ -62,6 +65,8 @@ export default function Sidebar() {
     }
     navigate(`/search?s=${inputValue}`);
     setEmptyInput(false);
+    // Update the page number state when form submit
+    dispatch(updatePageNumber(1));
     return setInputValue("");
   };
 
