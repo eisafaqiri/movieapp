@@ -23,14 +23,16 @@ function Home() {
 
   return (
     <Container sx={{ mt: 10, pb: 8 }}>
-      <Typography variant="h1" pb={2}>
-        IMDb Top 10 Movies
-      </Typography>
 
       <Grid
         container
         spacing={1.5}
       >
+        <Grid item xs={12}>
+          <Typography variant="h1" pb={2}>
+            IMDb Top 10 Movies
+          </Typography>
+        </Grid>
         {topMovies.movies && topMovies.movies.slice(0, 10).map((item) => (
           <Grid key={item.Title} item xs={12} sm={6} md={4} lg={3}>
             <Card

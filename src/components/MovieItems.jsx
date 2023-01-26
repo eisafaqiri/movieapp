@@ -13,8 +13,9 @@ function MovieItems({
 }) {
   const dispatch = useDispatch();
   const { pageNumber } = useSelector((state) => state.movie);
+
   const [page, setPage] = useState(pageNumber);
-  const [count] = useState(Number(Math.floor(totalResults / 10)));
+  const [count] = useState(Number(Math.ceil(totalResults / 10)));
 
   const handleChange = (e, value) => {
     setPage(value);
