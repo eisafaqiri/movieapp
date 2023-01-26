@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import {
-  Box,
-  Card, CardContent, CardHeader, Grid, Skeleton,
+  Card, CardContent, CardHeader, Container, Grid, Skeleton,
 } from "@mui/material";
 import React from "react";
 import { useTheme } from "@emotion/react";
@@ -11,15 +10,15 @@ function LoadingSkeleton() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   return (
-    <Box sx={{
-      flexGrow: 1, ml: 2, mr: 2, mt: 15,
+    <Container sx={{
+      mt: 15,
     }}
     >
       <Grid
         container
-        spacing={{ xs: 2, md: 3, lg: 3 }}
+        spacing={{ xs: 2, md: 3, lg: 1.5 }}
         columns={{
-          xs: 12, sm: 12, md: 12, lg: 12, xl: 12,
+          xs: 12, sm: 12, md: 12, lg: 12, xl: 10,
         }}
       >
         {React.Children.toArray(
@@ -60,7 +59,7 @@ function LoadingSkeleton() {
           )),
         )}
       </Grid>
-    </Box>
+    </Container>
   );
 }
 

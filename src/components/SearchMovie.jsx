@@ -12,15 +12,15 @@ function SearchMovie() {
   const location = useLocation();
   const inputValue = new URLSearchParams(location.search).get("s");
 
-  const { movies, isLoading } = useSelector((state) => state.movie);
+  const { movies, pageNumber, isLoading } = useSelector((state) => state.movie);
   const dispatch = useDispatch();
 
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
   useEffect(() => {
-    dispatch(searchMovies(inputValue));
-  }, [dispatch, inputValue]);
+    dispatch(searchMovies({ input: inputValue, page: pageNumber }));
+  }, [dispatch, inputValue, pageNumber]);
 
   const { Response, Search, totalResults } = movies;
 
@@ -29,7 +29,20 @@ function SearchMovie() {
   }
 
   if (Response === "False") {
-    return <Typography variant="h2" color={colors.redAccent[500]} sx={{ display: "flex", justifyContent: "center", placeItems: "center" }}>Movie not found!</Typography>;
+    return (
+      <Typography
+        variant="h2"
+        color={colors.redAccent[500]}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          placeItems: "center",
+          mt: 15,
+        }}
+      >
+        Movie not found!
+      </Typography>
+    );
   }
 
   return (
