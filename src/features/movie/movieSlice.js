@@ -9,7 +9,7 @@ const {
 const initialState = {
   movies: [],
   topMovies: [],
-  pageNumber: 1,
+  pageNumber: 0,
   isLoading: false,
 };
 
